@@ -16,6 +16,7 @@
   >
 
   <style>
+
     :root {
       --bg: #09070b;
       --plum: #241026;
@@ -51,16 +52,21 @@
     .screen {
       min-height: 100vh;
       min-height: 100svh;
+
       display: grid;
       place-items: center;
+
       position: relative;
       overflow: hidden;
+
       isolation: isolate;
     }
 
     .screen::before {
       content: "";
+
       position: absolute;
+
       inset: -20%;
 
       background:
@@ -69,11 +75,13 @@
           rgba(141, 76, 168, 0.22),
           transparent 30%
         ),
+
         radial-gradient(
           circle at 80% 75%,
           rgba(197, 139, 212, 0.14),
           transparent 28%
         ),
+
         radial-gradient(
           circle at 50% 50%,
           rgba(232, 185, 143, 0.06),
@@ -81,45 +89,70 @@
         );
 
       filter: blur(18px);
+
       z-index: -2;
     }
 
     .stars,
     .petals {
+
       position: absolute;
+
       inset: 0;
+
       pointer-events: none;
+
       z-index: -1;
+
     }
 
     /* ESTRELLAS */
 
     .star {
+
       position: absolute;
+
       width: 3px;
       height: 3px;
+
       border-radius: 50%;
+
       background: #f6d9c4;
+
       opacity: 0.35;
+
       box-shadow: 0 0 12px #e8b98f;
-      animation: twinkle 3.5s infinite ease-in-out;
+
+      animation:
+        twinkle 3.5s infinite ease-in-out;
+
     }
 
     @keyframes twinkle {
+
       50% {
+
         opacity: 0.9;
+
         transform: scale(1.7);
+
       }
+
     }
 
     /* INTRO */
 
     .intro {
+
       width: min(92%, 520px);
+
       text-align: center;
+
       padding: 42px 28px;
 
-      border: 1px solid rgba(232, 185, 143, 0.38);
+      border:
+        1px solid
+        rgba(232, 185, 143, 0.38);
 
       background:
         linear-gradient(
@@ -133,50 +166,87 @@
         inset 0 0 70px rgba(141, 76, 168, 0.06);
 
       border-radius: 4px;
+
       backdrop-filter: blur(10px);
 
-      animation: appear 0.9s ease both;
+      animation:
+        appear 0.9s ease both;
+
     }
 
     .eyebrow {
+
       letter-spacing: 0.28em;
+
       text-transform: uppercase;
+
       font-size: 0.78rem;
+
       color: var(--gold);
+
     }
 
     h1 {
-      font-family: "Great Vibes", cursive;
-      font-size: clamp(4rem, 15vw, 7rem);
+
+      font-family:
+        "Great Vibes",
+        cursive;
+
+      font-size:
+        clamp(
+          4rem,
+          15vw,
+          7rem
+        );
+
       line-height: 0.9;
+
       font-weight: 400;
+
       margin: 20px 0 12px;
+
       color: #f0c5a6;
 
-      text-shadow: 0 0 30px rgba(232, 185, 143, 0.13);
+      text-shadow:
+        0 0 30px
+        rgba(232, 185, 143, 0.13);
+
     }
 
     .intro p {
+
       color: var(--muted);
+
       font-size: 1.18rem;
+
       line-height: 1.45;
-      margin: 0 auto 28px;
+
+      margin:
+        0 auto 28px;
+
       max-width: 390px;
+
     }
 
     /* INPUT */
 
     .date-input {
+
       width: 100%;
+
       max-width: 340px;
 
-      padding: 14px 18px;
+      padding:
+        14px 18px;
 
       border-radius: 999px;
 
-      border: 1px solid rgba(232, 185, 143, 0.42);
+      border:
+        1px solid
+        rgba(232, 185, 143, 0.42);
 
-      background: rgba(255, 255, 255, 0.045);
+      background:
+        rgba(255, 255, 255, 0.045);
 
       color: var(--cream);
 
@@ -187,27 +257,37 @@
       transition: 0.25s;
 
       font-size: 1.05rem;
+
     }
 
     .date-input::placeholder {
+
       color: #9e8997;
+
     }
 
     .date-input:focus {
-      border-color: var(--gold);
+
+      border-color:
+        var(--gold);
 
       box-shadow:
-        0 0 0 4px rgba(232, 185, 143, 0.08);
+        0 0 0 4px
+        rgba(232, 185, 143, 0.08);
+
     }
 
     /* BOTÓN */
 
     .open-btn {
+
       margin-top: 14px;
 
-      padding: 13px 28px;
+      padding:
+        13px 28px;
 
       border: 0;
+
       border-radius: 999px;
 
       color: #1a0d18;
@@ -222,30 +302,41 @@
       cursor: pointer;
 
       font-weight: 700;
+
       letter-spacing: 0.05em;
 
       box-shadow:
-        0 10px 30px rgba(141, 76, 168, 0.22);
+        0 10px 30px
+        rgba(141, 76, 168, 0.22);
 
       transition:
         transform 0.2s,
         box-shadow 0.2s;
+
     }
 
     .open-btn:hover {
-      transform: translateY(-2px);
+
+      transform:
+        translateY(-2px);
 
       box-shadow:
-        0 14px 35px rgba(141, 76, 168, 0.3);
+        0 14px 35px
+        rgba(141, 76, 168, 0.3);
+
     }
 
     .open-btn:active {
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
+
     }
 
     /* ERROR */
 
     .error {
+
       min-height: 24px;
 
       margin: 8px 0 0;
@@ -253,25 +344,34 @@
       color: #e8a4b4;
 
       font-size: 0.95rem;
+
     }
 
     .hidden {
+
       display: none !important;
+
     }
 
     /* INVITACIÓN */
 
     .invitation-wrap {
-      width: min(94vw, 720px);
 
-      padding: 24px 0 70px;
+      width:
+        min(94vw, 720px);
+
+      padding:
+        24px 0 70px;
 
       position: relative;
 
-      animation: reveal 1.2s ease both;
+      animation:
+        reveal 1.2s ease both;
+
     }
 
     .invitation-card {
+
       position: relative;
 
       background: #100b10;
@@ -281,26 +381,35 @@
       overflow: hidden;
 
       box-shadow:
-        0 30px 100px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(232, 185, 143, 0.18);
+        0 30px 100px
+        rgba(0, 0, 0, 0.7),
+
+        0 0 0 1px
+        rgba(232, 185, 143, 0.18);
+
     }
 
     .invitation-card img {
+
       display: block;
 
       width: 100%;
 
       height: auto;
+
     }
 
     /* MENSAJE FINAL */
 
     .final-note {
+
       text-align: center;
 
-      margin: 22px auto 0;
+      margin:
+        22px auto 0;
 
-      padding: 18px 22px;
+      padding:
+        18px 22px;
 
       color: #d9c4d0;
 
@@ -309,26 +418,33 @@
       line-height: 1.45;
 
       opacity: 0.95;
+
     }
 
-    /* BOTÓN DE MÚSICA */
+    /* BOTÓN MÚSICA */
 
     .music {
+
       position: fixed;
 
       right: 18px;
+
       bottom: 18px;
 
       z-index: 20;
 
       width: 46px;
+
       height: 46px;
 
       border-radius: 50%;
 
-      border: 1px solid rgba(232, 185, 143, 0.45);
+      border:
+        1px solid
+        rgba(232, 185, 143, 0.45);
 
-      background: rgba(20, 10, 22, 0.75);
+      background:
+        rgba(20, 10, 22, 0.75);
 
       color: #f0c5a6;
 
@@ -337,50 +453,89 @@
       backdrop-filter: blur(8px);
 
       display: grid;
+
       place-items: center;
+
+      transition:
+        transform 0.2s,
+        background 0.2s;
+
+    }
+
+    .music:hover {
+
+      transform: scale(1.08);
+
+      background:
+        rgba(40, 18, 42, 0.9);
+
     }
 
     .music small {
+
       font-size: 15px;
+
     }
 
     /* ANIMACIONES */
 
     @keyframes appear {
+
       from {
+
         opacity: 0;
-        transform: translateY(18px);
+
+        transform:
+          translateY(18px);
+
       }
 
       to {
+
         opacity: 1;
+
         transform: none;
+
       }
+
     }
 
     @keyframes reveal {
+
       from {
+
         opacity: 0;
-        transform: translateY(28px) scale(0.985);
+
+        transform:
+          translateY(28px)
+          scale(0.985);
+
       }
 
       to {
+
         opacity: 1;
+
         transform: none;
+
       }
+
     }
 
     /* PÉTALOS */
 
     .petal {
+
       position: absolute;
 
       top: -30px;
 
       width: 11px;
+
       height: 17px;
 
-      border-radius: 100% 0 100% 0;
+      border-radius:
+        100% 0 100% 0;
 
       background:
         linear-gradient(
@@ -391,11 +546,15 @@
 
       opacity: 0.5;
 
-      animation: fall linear infinite;
+      animation:
+        fall linear infinite;
+
     }
 
     @keyframes fall {
+
       to {
+
         transform:
           translate3d(
             var(--drift),
@@ -405,7 +564,9 @@
           rotate(560deg);
 
         opacity: 0;
+
       }
+
     }
 
     /* MÓVIL */
@@ -413,52 +574,89 @@
     @media (max-width: 600px) {
 
       .intro {
-        padding: 36px 20px;
+
+        padding:
+          36px 20px;
+
       }
 
       .invitation-wrap {
+
         width: 96vw;
+
         padding-top: 12px;
+
       }
 
       .final-note {
+
         font-size: 1rem;
+
       }
 
       .date-input {
+
         font-size: 1rem;
+
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- =========================
+
+  <!-- ==================================
        PANTALLA INICIAL
-  ========================== -->
+  =================================== -->
 
-  <section id="introScreen" class="screen">
+  <section
+    id="introScreen"
+    class="screen"
+  >
 
-    <div id="stars" class="stars"></div>
+    <div
+      id="stars"
+      class="stars"
+    ></div>
 
-    <div id="petals" class="petals"></div>
+    <div
+      id="petals"
+      class="petals"
+    ></div>
+
 
     <div class="intro">
 
       <div class="eyebrow">
+
         Una pequeña sorpresa
+
       </div>
 
+
       <h1>
+
         Para ti
+
       </h1>
 
+
       <p>
-        Hay algo que preparé con mucho cariño.
+
+        Hay algo que preparé
+        con mucho cariño.
+
         <br>
-        Escribe la fecha de tu día para descubrirlo.
+
+        Escribe la fecha de tu día
+        para descubrirlo.
+
       </p>
+
 
       <input
         id="dateInput"
@@ -471,15 +669,20 @@
         maxlength="5"
       >
 
+
       <br>
+
 
       <button
         id="openBtn"
         class="open-btn"
         type="button"
       >
+
         Abrir mi invitación
+
       </button>
+
 
       <div
         id="error"
@@ -492,28 +695,44 @@
   </section>
 
 
-  <!-- =========================
+
+  <!-- ==================================
        INVITACIÓN
-  ========================== -->
+  =================================== -->
 
   <main
     id="invitationScreen"
     class="screen hidden"
   >
 
-    <div id="stars2" class="stars"></div>
+    <div
+      id="stars2"
+      class="stars"
+    ></div>
 
-    <div id="petals2" class="petals"></div>
+    <div
+      id="petals2"
+      class="petals"
+    ></div>
+
 
     <div class="invitation-wrap">
+
 
       <div class="invitation-card">
 
         <img
           src="assets/invitacion.png"
           alt="Invitación de cumpleaños para el 25 de agosto en SIMAH"
-          onerror="this.style.display='none'; document.getElementById('imageError').classList.remove('hidden');"
+          onerror="
+            this.style.display='none';
+            document
+              .getElementById('imageError')
+              .classList
+              .remove('hidden');
+          "
         >
+
 
         <div
           id="imageError"
@@ -524,130 +743,178 @@
             color:#d9c4d0;
           "
         >
-          No se pudo cargar la invitación.
+
+          No se pudo cargar
+          la invitación.
+
           <br><br>
+
           Revisa que el archivo esté en:
+
           <br>
-          <strong>assets/invitacion.png</strong>
+
+          <strong>
+            assets/invitacion.png
+          </strong>
+
         </div>
 
       </div>
 
+
       <div class="final-note">
-        Con mucho amor, para hacer de tu cumpleaños un recuerdo bonito. ♡
+
+        Con mucho amor,
+        para hacer de tu cumpleaños
+        un recuerdo bonito. ♡
+
       </div>
+
 
     </div>
 
   </main>
 
 
-  <!-- =========================
+
+  <!-- ==================================
        BOTÓN DE MÚSICA
-  ========================== -->
+  =================================== -->
 
   <button
     id="musicBtn"
     class="music hidden"
     type="button"
-    aria-label="Activar o pausar música"
+    aria-label="Pausar o reproducir música"
   >
-    <small>♫</small>
+
+    <small>❚❚</small>
+
   </button>
 
 
-  <!-- =========================
-       MÚSICA
-  ========================== -->
+
+  <!-- ==================================
+       TU MP3
+       
+       DEBE ESTAR EN:
+
+       assets/musica.mp3
+  =================================== -->
 
   <audio
     id="backgroundMusic"
-    loop
     preload="auto"
+    loop
   >
+
     <source
       src="assets/musica.mp3"
       type="audio/mpeg"
     >
+
   </audio>
+
 
 
   <script>
 
-    /* =========================
+
+    /* ==================================
        ELEMENTOS
-    ========================== */
+    =================================== */
 
     const intro =
-      document.getElementById("introScreen");
+      document.getElementById(
+        "introScreen"
+      );
 
     const invitation =
-      document.getElementById("invitationScreen");
+      document.getElementById(
+        "invitationScreen"
+      );
 
     const input =
-      document.getElementById("dateInput");
+      document.getElementById(
+        "dateInput"
+      );
 
     const btn =
-      document.getElementById("openBtn");
+      document.getElementById(
+        "openBtn"
+      );
 
     const error =
-      document.getElementById("error");
+      document.getElementById(
+        "error"
+      );
 
     const musicBtn =
-      document.getElementById("musicBtn");
+      document.getElementById(
+        "musicBtn"
+      );
 
-    const backgroundMusic =
-      document.getElementById("backgroundMusic");
+    const music =
+      document.getElementById(
+        "backgroundMusic"
+      );
 
 
-    /* =========================
-       NORMALIZAR TEXTO
-    ========================== */
+
+    /* ==================================
+       NORMALIZAR
+    =================================== */
 
     function normalize(value) {
 
       return value
+
         .toLowerCase()
+
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, " ")
+
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+
+        .replace(
+          /\s+/g,
+          " "
+        )
+
         .trim();
 
     }
 
 
-    /* =========================
-       VALIDAR FECHA
-       
-       Acepta:
-       25/08
-       25-08
-       2508
-       25 agosto
-       25 de agosto
-    ========================== */
+
+    /* ==================================
+       FECHA VÁLIDA
+    =================================== */
 
     function validDate(value) {
 
       const date =
         normalize(value);
 
-      const validFormats = [
+      return [
+
         "25/08",
         "25-08",
         "2508",
         "25 agosto",
         "25 de agosto"
-      ];
 
-      return validFormats.includes(date);
+      ].includes(date);
 
     }
 
 
-    /* =========================
+
+    /* ==================================
        ESTRELLAS
-    ========================== */
+    =================================== */
 
     function makeStars(
       container,
@@ -661,29 +928,38 @@
       ) {
 
         const star =
-          document.createElement("i");
+          document.createElement(
+            "i"
+          );
 
-        star.className = "star";
+        star.className =
+          "star";
 
         star.style.left =
-          Math.random() * 100 + "%";
+          Math.random() * 100 +
+          "%";
 
         star.style.top =
-          Math.random() * 100 + "%";
+          Math.random() * 100 +
+          "%";
 
         star.style.animationDelay =
-          Math.random() * 3.5 + "s";
+          Math.random() * 3.5 +
+          "s";
 
-        container.appendChild(star);
+        container.appendChild(
+          star
+        );
 
       }
 
     }
 
 
-    /* =========================
+
+    /* ==================================
        PÉTALOS
-    ========================== */
+    =================================== */
 
     function makePetals(
       container,
@@ -697,19 +973,25 @@
       ) {
 
         const petal =
-          document.createElement("i");
+          document.createElement(
+            "i"
+          );
 
         petal.className =
           "petal";
 
         petal.style.left =
-          Math.random() * 100 + "%";
+          Math.random() * 100 +
+          "%";
 
         petal.style.animationDuration =
-          7 + Math.random() * 8 + "s";
+          7 +
+          Math.random() * 8 +
+          "s";
 
         petal.style.animationDelay =
-          -Math.random() * 12 + "s";
+          -Math.random() * 12 +
+          "s";
 
         petal.style.setProperty(
           "--drift",
@@ -723,52 +1005,8 @@
           Math.random() * 360 +
           "deg)";
 
-        container.appendChild(petal);
-
-      }
-
-    }
-
-
-    /* =========================
-       CREAR EFECTOS
-    ========================== */
-
-    makeStars(
-      document.getElementById("stars")
-    );
-
-    makeStars(
-      document.getElementById("stars2")
-    );
-
-    makePetals(
-      document.getElementById("petals")
-    );
-
-    makePetals(
-      document.getElementById("petals2")
-    );
-
-
-    /* =========================
-       REPRODUCIR MÚSICA
-    ========================== */
-
-    async function playMusic() {
-
-      try {
-
-        await backgroundMusic.play();
-
-        musicBtn.innerHTML =
-          "<small>❚❚</small>";
-
-      } catch (error) {
-
-        console.log(
-          "No se pudo iniciar la música:",
-          error
+        container.appendChild(
+          petal
         );
 
       }
@@ -776,13 +1014,54 @@
     }
 
 
-    /* =========================
+
+    /* ==================================
+       EFECTOS
+    =================================== */
+
+    makeStars(
+      document.getElementById(
+        "stars"
+      )
+    );
+
+    makeStars(
+      document.getElementById(
+        "stars2"
+      )
+    );
+
+    makePetals(
+      document.getElementById(
+        "petals"
+      )
+    );
+
+    makePetals(
+      document.getElementById(
+        "petals2"
+      )
+    );
+
+
+
+    /* ==================================
        ABRIR INVITACIÓN
-    ========================== */
+       
+       AQUÍ SE REPRODUCE
+       TU MP3.
+    =================================== */
 
     async function openInvitation() {
 
-      if (!validDate(input.value)) {
+
+      /* ------------------------------
+         COMPROBAR FECHA
+      ------------------------------ */
+
+      if (
+        !validDate(input.value)
+      ) {
 
         error.textContent =
           "Pista: es el 25/08.";
@@ -793,11 +1072,13 @@
 
       }
 
-      /* =====================
-         FECHA CORRECTA
-      ===================== */
 
       error.textContent = "";
+
+
+      /* ------------------------------
+         MOSTRAR INVITACIÓN
+      ------------------------------ */
 
       intro.classList.add(
         "hidden"
@@ -811,24 +1092,68 @@
         "hidden"
       );
 
+
+      /* ------------------------------
+         REINICIAR MP3
+         
+         Esto garantiza que empiece
+         desde el principio.
+      ------------------------------ */
+
+      music.pause();
+
+      music.currentTime = 0;
+
+
+      /* ------------------------------
+         REPRODUCIR MP3
+         
+         El clic del botón "Abrir"
+         permite que el navegador
+         autorice el audio.
+      ------------------------------ */
+
+      try {
+
+        await music.play();
+
+        musicBtn.innerHTML =
+          "<small>❚❚</small>";
+
+      }
+
+      catch (e) {
+
+        console.log(
+          "El navegador bloqueó el audio:",
+          e
+        );
+
+        musicBtn.innerHTML =
+          "<small>♫</small>";
+
+      }
+
+
+      /* ------------------------------
+         IR ARRIBA
+      ------------------------------ */
+
       window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
       });
-
-
-      /* =====================
-         EMPEZAR MÚSICA
-      ===================== */
-
-      await playMusic();
 
     }
 
 
-    /* =========================
+
+    /* ==================================
        BOTÓN ABRIR
-    ========================== */
+    =================================== */
 
     btn.addEventListener(
       "click",
@@ -836,9 +1161,10 @@
     );
 
 
-    /* =========================
+
+    /* ==================================
        ENTER
-    ========================== */
+    =================================== */
 
     input.addEventListener(
       "keydown",
@@ -858,11 +1184,10 @@
     );
 
 
-    /* =========================
-       FORMATEAR FECHA
 
-       2508 → 25/08
-    ========================== */
+    /* ==================================
+       FORMATEAR 2508 → 25/08
+    =================================== */
 
     input.addEventListener(
       "input",
@@ -873,6 +1198,7 @@
             /\D/g,
             ""
           );
+
 
         if (
           value.length > 4
@@ -885,6 +1211,7 @@
             );
 
         }
+
 
         if (
           value.length >= 3
@@ -902,8 +1229,10 @@
 
         }
 
+
         input.value =
           value;
+
 
         error.textContent =
           "";
@@ -912,23 +1241,46 @@
     );
 
 
-    /* =========================
+
+    /* ==================================
        BOTÓN DE MÚSICA
-    ========================== */
+    =================================== */
 
     musicBtn.addEventListener(
       "click",
       async function() {
 
+
         if (
-          backgroundMusic.paused
+          music.paused
         ) {
 
-          await playMusic();
 
-        } else {
+          try {
 
-          backgroundMusic.pause();
+            await music.play();
+
+            musicBtn.innerHTML =
+              "<small>❚❚</small>";
+
+          }
+
+          catch (e) {
+
+            console.log(
+              "No se pudo reproducir:",
+              e
+            );
+
+          }
+
+
+        }
+
+        else {
+
+
+          music.pause();
 
           musicBtn.innerHTML =
             "<small>♫</small>";
@@ -939,21 +1291,18 @@
     );
 
 
-    /* =========================
-       SI EL AUDIO TERMINA
-       VUELVE A EMPEZAR
-    ========================== */
 
-    backgroundMusic.addEventListener(
-      "ended",
-      function() {
+    /* ==================================
+       SEGURIDAD
+       
+       AL CARGAR LA PÁGINA,
+       EL MP3 ESTÁ DETENIDO.
+    =================================== */
 
-        backgroundMusic.currentTime = 0;
+    music.pause();
 
-        playMusic();
+    music.currentTime = 0;
 
-      }
-    );
 
   </script>
 
