@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#100a12" />
+  <title>Para ti | 25 de agosto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#09070b;
+      --plum:#241026;
+      --purple:#8d4ca8;
+      --purple2:#c58bd4;
+      --gold:#e8b98f;
+      --cream:#f7eadf;
+      --muted:#cbb8c5;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--cream)}
+    body{
+      font-family:"Cormorant Garamond", Georgia, serif;
+      overflow-x:hidden;
+    }
+    button,input{font:inherit}
+    .screen{
+      min-height:100vh;
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .screen::before{
+      content:"";
+      position:absolute;inset:-20%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(141,76,168,.22), transparent 30%),
+        radial-gradient(circle at 80% 75%, rgba(197,139,212,.14), transparent 28%),
+        radial-gradient(circle at 50% 50%, rgba(232,185,143,.06), transparent 35%);
+      filter:blur(18px);
+      z-index:-2;
+    }
+    .stars,.petals{position:absolute;inset:0;pointer-events:none;z-index:-1}
+    .star{
+      position:absolute;width:3px;height:3px;border-radius:50%;
+      background:#f6d9c4;opacity:.35;box-shadow:0 0 12px #e8b98f;
+      animation:twinkle 3.5s infinite ease-in-out;
+    }
+    @keyframes twinkle{50%{opacity:.9;transform:scale(1.7)}}
+    .intro{
+      width:min(92%,520px);
+      text-align:center;
+      padding:42px 28px;
+      border:1px solid rgba(232,185,143,.38);
+      background:linear-gradient(145deg,rgba(30,16,31,.84),rgba(8,7,10,.9));
+      box-shadow:0 25px 80px rgba(0,0,0,.55), inset 0 0 70px rgba(141,76,168,.06);
+      border-radius:4px;
+      backdrop-filter:blur(10px);
+      animation:appear .9s ease both;
+    }
+    .eyebrow{
+      letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:var(--gold);
+    }
+    h1{
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(4rem,15vw,7rem);
+      line-height:.9;font-weight:400;margin:20px 0 12px;color:#f0c5a6;
+      text-shadow:0 0 30px rgba(232,185,143,.13);
+    }
+    .intro p{
+      color:var(--muted);font-size:1.18rem;line-height:1.45;margin:0 auto 28px;max-width:390px;
+    }
+    .date-input{
+      width:100%;max-width:340px;padding:14px 18px;border-radius:999px;
+      border:1px solid rgba(232,185,143,.42);background:rgba(255,255,255,.045);
+      color:var(--cream);text-align:center;outline:none;
+      transition:.25s;
+    }
+    .date-input::placeholder{color:#9e8997}
+    .date-input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(232,185,143,.08)}
+    .open-btn{
+      margin-top:14px;padding:13px 28px;border:0;border-radius:999px;
+      color:#1a0d18;background:linear-gradient(135deg,#f1c8a8,#d99bcf);
+      cursor:pointer;font-weight:700;letter-spacing:.05em;
+      box-shadow:0 10px 30px rgba(141,76,168,.22);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .open-btn:hover{transform:translateY(-2px);box-shadow:0 14px 35px rgba(141,76,168,.3)}
+    .error{height:24px;margin:8px 0 0;color:#e8a4b4;font-size:.95rem}
+    .hidden{display:none!important}
+    .invitation-wrap{
+      width:min(94vw,720px);padding:24px 0 70px;position:relative;
+      animation:reveal 1.2s ease both;
+    }
+    .invitation-card{
+      position:relative;background:#100b10;border-radius:3px;overflow:hidden;
+      box-shadow:0 30px 100px rgba(0,0,0,.7),0 0 0 1px rgba(232,185,143,.18);
+    }
+    .invitation-card img{display:block;width:100%;height:auto}
+    .final-note{
+      text-align:center;margin:22px auto 0;padding:18px 22px;
+      color:#d9c4d0;font-size:1.08rem;line-height:1.45;
+      opacity:.95;
+    }
+    .music{
+      position:fixed;right:18px;bottom:18px;z-index:20;
+      width:46px;height:46px;border-radius:50%;
+      border:1px solid rgba(232,185,143,.45);background:rgba(20,10,22,.75);
+      color:#f0c5a6;cursor:pointer;backdrop-filter:blur(8px);
+    }
+    .music small{font-size:15px}
+    @keyframes appear{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+    @keyframes reveal{from{opacity:0;transform:translateY(28px) scale(.985)}to{opacity:1;transform:none}}
+    .petal{
+      position:absolute;top:-30px;width:11px;height:17px;border-radius:100% 0 100% 0;
+      background:linear-gradient(145deg,#9c5ab2,#d09bdb);
+      opacity:.5;animation:fall linear infinite;
+    }
+    @keyframes fall{
+      to{transform:translate3d(var(--drift),110vh,0) rotate(560deg);opacity:0}
+    }
+    @media (max-width:600px){
+      .intro{padding:36px 20px}
+      .invitation-wrap{width:96vw;padding-top:12px}
+      .final-note{font-size:1rem}
+    }
+  </style>
+</head>
+<body>
+  <section id="introScreen" class="screen">
+    <div id="stars" class="stars"></div>
+    <div id="petals" class="petals"></div>
+    <div class="intro">
+      <div class="eyebrow">Una pequeña sorpresa para ti</div>
+      <h1>Para ti</h1>
+      <p>Hay algo que preparé con mucho cariño.<br>Escribe la fecha de nuestro día para descubrirlo.</p>
+      <input id="dateInput" class="date-input" autocomplete="off" inputmode="text" placeholder="25 de agosto" aria-label="Fecha">
+      <br>
+      <button id="openBtn" class="open-btn">Abrir mi invitación</button>
+      <div id="error" class="error"></div>
+    </div>
+  </section>
+
+  <main id="invitationScreen" class="screen hidden">
+    <div id="stars2" class="stars"></div>
+    <div id="petals2" class="petals"></div>
+    <div class="invitation-wrap">
+      <div class="invitation-card">
+        <img src="assets/invitacion.png" alt="Invitación de cumpleaños para el 25 de agosto en SIMAH">
+      </div>
+      <div class="final-note">Con mucho amor, para hacer de tu cumpleaños un recuerdo bonito. ♡</div>
+    </div>
+  </main>
+
+  <button id="musicBtn" class="music hidden" aria-label="Activar sonido"><small>♫</small></button>
+
+<script>
+  const intro = document.getElementById('introScreen');
+  const invitation = document.getElementById('invitationScreen');
+  const input = document.getElementById('dateInput');
+  const btn = document.getElementById('openBtn');
+  const error = document.getElementById('error');
+  const musicBtn = document.getElementById('musicBtn');
+
+  function normalize(v){
+    return v.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/\s+/g,' ').trim().replace(/\bde\b/g,'');
+  }
+  function validDate(v){
+    const n = normalize(v);
+    return n === '25 agosto' || n === '25 agosto' || n === '25/08' || n === '25-08' || n === '2508';
+  }
+
+  function makeStars(container, count=28){
+    for(let i=0;i<count;i++){
+      const s=document.createElement('i'); s.className='star';
+      s.style.left=(Math.random()*100)+'%';
+      s.style.top=(Math.random()*100)+'%';
+      s.style.animationDelay=(Math.random()*3.5)+'s';
+      container.appendChild(s);
+    }
+  }
+  function makePetals(container, count=16){
+    for(let i=0;i<count;i++){
+      const p=document.createElement('i'); p.className='petal';
+      p.style.left=(Math.random()*100)+'%';
+      p.style.animationDuration=(7+Math.random()*8)+'s';
+      p.style.animationDelay=(-Math.random()*12)+'s';
+      p.style.setProperty('--drift',(-120+Math.random()*240)+'px');
+      p.style.transform='rotate('+(Math.random()*360)+'deg)';
+      container.appendChild(p);
+    }
+  }
+  makeStars(document.getElementById('stars'));
+  makeStars(document.getElementById('stars2'));
+  makePetals(document.getElementById('petals'));
+  makePetals(document.getElementById('petals2'));
+
+  function openInvitation(){
+    if(!validDate(input.value)){
+      error.textContent='Pista: es el 25 de agosto.';
+      input.focus();
+      return;
+    }
+    error.textContent='';
+    intro.classList.add('hidden');
+    invitation.classList.remove('hidden');
+    musicBtn.classList.remove('hidden');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  btn.addEventListener('click', openInvitation);
+  input.addEventListener('keydown', e => { if(e.key === 'Enter') openInvitation(); });
+
+  // Ambient sound created locally with Web Audio. It only starts after the visitor taps the button.
+  let audioCtx, master, timer, playing=false;
+  function startAmbient(){
+    if(playing) return;
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    master=audioCtx.createGain(); master.gain.value=.035; master.connect(audioCtx.destination);
+    const notes=[196,246.94,293.66,392,293.66,246.94];
+    let i=0;
+    function chord(){
+      if(!playing) return;
+      const now=audioCtx.currentTime;
+      const osc=audioCtx.createOscillator(), gain=audioCtx.createGain();
+      osc.type='sine'; osc.frequency.value=notes[i++%notes.length];
+      gain.gain.setValueAtTime(0,now);
+      gain.gain.linearRampToValueAtTime(.8,now+.5);
+      gain.gain.exponentialRampToValueAtTime(.001,now+3.8);
+      osc.connect(gain); gain.connect(master); osc.start(now); osc.stop(now+4);
+      timer=setTimeout(chord,1400);
+    }
+    playing=true; chord(); musicBtn.textContent='❚❚';
+  }
+  musicBtn.addEventListener('click', async ()=>{
+    if(!playing){ startAmbient(); }
+    else { playing=false; if(timer) clearTimeout(timer); if(audioCtx) await audioCtx.close(); musicBtn.textContent='♫'; }
+  });
+</script>
+</body>
+</html>
