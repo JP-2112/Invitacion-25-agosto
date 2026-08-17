@@ -255,8 +255,6 @@
       font-size: 0.95rem;
     }
 
-    /* OCULTO */
-
     .hidden {
       display: none !important;
     }
@@ -393,8 +391,7 @@
 
       opacity: 0.5;
 
-      animation:
-        fall linear infinite;
+      animation: fall linear infinite;
     }
 
     @keyframes fall {
@@ -553,10 +550,26 @@
     id="musicBtn"
     class="music hidden"
     type="button"
-    aria-label="Activar sonido"
+    aria-label="Activar o pausar música"
   >
     <small>♫</small>
   </button>
+
+
+  <!-- =========================
+       MÚSICA
+  ========================== -->
+
+  <audio
+    id="backgroundMusic"
+    loop
+    preload="auto"
+  >
+    <source
+      src="assets/musica.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
 
 
   <script>
@@ -582,6 +595,9 @@
 
     const musicBtn =
       document.getElementById("musicBtn");
+
+    const backgroundMusic =
+      document.getElementById("backgroundMusic");
 
 
     /* =========================
@@ -613,7 +629,8 @@
 
     function validDate(value) {
 
-      const date = normalize(value);
+      const date =
+        normalize(value);
 
       const validFormats = [
         "25/08",
@@ -632,9 +649,16 @@
        ESTRELLAS
     ========================== */
 
-    function makeStars(container, count = 28) {
+    function makeStars(
+      container,
+      count = 28
+    ) {
 
-      for (let i = 0; i < count; i++) {
+      for (
+        let i = 0;
+        i < count;
+        i++
+      ) {
 
         const star =
           document.createElement("i");
@@ -661,14 +685,22 @@
        PÉTALOS
     ========================== */
 
-    function makePetals(container, count = 16) {
+    function makePetals(
+      container,
+      count = 16
+    ) {
 
-      for (let i = 0; i < count; i++) {
+      for (
+        let i = 0;
+        i < count;
+        i++
+      ) {
 
         const petal =
           document.createElement("i");
 
-        petal.className = "petal";
+        petal.className =
+          "petal";
 
         petal.style.left =
           Math.random() * 100 + "%";
@@ -681,7 +713,9 @@
 
         petal.style.setProperty(
           "--drift",
-          -120 + Math.random() * 240 + "px"
+          -120 +
+          Math.random() * 240 +
+          "px"
         );
 
         petal.style.transform =
@@ -718,14 +752,37 @@
 
 
     /* =========================
+       REPRODUCIR MÚSICA
+    ========================== */
+
+    async function playMusic() {
+
+      try {
+
+        await backgroundMusic.play();
+
+        musicBtn.innerHTML =
+          "<small>❚❚</small>";
+
+      } catch (error) {
+
+        console.log(
+          "No se pudo iniciar la música:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* =========================
        ABRIR INVITACIÓN
     ========================== */
 
-    function openInvitation() {
+    async function openInvitation() {
 
-      const value = input.value;
-
-      if (!validDate(value)) {
+      if (!validDate(input.value)) {
 
         error.textContent =
           "Pista: es el 25/08.";
@@ -736,26 +793,41 @@
 
       }
 
-      /* Fecha correcta */
+      /* =====================
+         FECHA CORRECTA
+      ===================== */
 
       error.textContent = "";
 
-      intro.classList.add("hidden");
+      intro.classList.add(
+        "hidden"
+      );
 
-      invitation.classList.remove("hidden");
+      invitation.classList.remove(
+        "hidden"
+      );
 
-      musicBtn.classList.remove("hidden");
+      musicBtn.classList.remove(
+        "hidden"
+      );
 
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
 
+
+      /* =====================
+         EMPEZAR MÚSICA
+      ===================== */
+
+      await playMusic();
+
     }
 
 
     /* =========================
-       BOTÓN
+       BOTÓN ABRIR
     ========================== */
 
     btn.addEventListener(
@@ -765,14 +837,16 @@
 
 
     /* =========================
-       ENTER EN EL INPUT
+       ENTER
     ========================== */
 
     input.addEventListener(
       "keydown",
-      function (event) {
+      function(event) {
 
-        if (event.key === "Enter") {
+        if (
+          event.key === "Enter"
+        ) {
 
           event.preventDefault();
 
@@ -785,157 +859,57 @@
 
 
     /* =========================
-       FORMATEAR AUTOMÁTICAMENTE
+       FORMATEAR FECHA
+
        2508 → 25/08
     ========================== */
 
     input.addEventListener(
       "input",
-      function () {
+      function() {
 
         let value =
-          input.value.replace(/\D/g, "");
+          input.value.replace(
+            /\D/g,
+            ""
+          );
 
-        if (value.length > 4) {
-
-          value = value.substring(0, 4);
-
-        }
-
-        if (value.length >= 3) {
+        if (
+          value.length > 4
+        ) {
 
           value =
-            value.substring(0, 2) +
-            "/" +
-            value.substring(2);
+            value.substring(
+              0,
+              4
+            );
 
         }
 
-        input.value = value;
+        if (
+          value.length >= 3
+        ) {
 
-        error.textContent = "";
+          value =
+            value.substring(
+              0,
+              2
+            ) +
+            "/" +
+            value.substring(
+              2
+            );
+
+        }
+
+        input.value =
+          value;
+
+        error.textContent =
+          "";
 
       }
     );
-
-
-    /* =========================
-       MÚSICA AMBIENTAL
-    ========================== */
-
-    let audioCtx = null;
-
-    let master = null;
-
-    let timer = null;
-
-    let playing = false;
-
-
-    function startAmbient() {
-
-      if (playing) {
-        return;
-      }
-
-      const AudioContext =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-      if (!AudioContext) {
-
-        return;
-
-      }
-
-      audioCtx =
-        new AudioContext();
-
-      master =
-        audioCtx.createGain();
-
-      master.gain.value = 0.035;
-
-      master.connect(
-        audioCtx.destination
-      );
-
-      const notes = [
-        196,
-        246.94,
-        293.66,
-        392,
-        293.66,
-        246.94
-      ];
-
-      let index = 0;
-
-
-      function chord() {
-
-        if (!playing) {
-          return;
-        }
-
-        const now =
-          audioCtx.currentTime;
-
-        const oscillator =
-          audioCtx.createOscillator();
-
-        const gain =
-          audioCtx.createGain();
-
-        oscillator.type = "sine";
-
-        oscillator.frequency.value =
-          notes[index % notes.length];
-
-        index++;
-
-
-        gain.gain.setValueAtTime(
-          0,
-          now
-        );
-
-        gain.gain.linearRampToValueAtTime(
-          0.8,
-          now + 0.5
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          now + 3.8
-        );
-
-
-        oscillator.connect(gain);
-
-        gain.connect(master);
-
-        oscillator.start(now);
-
-        oscillator.stop(now + 4);
-
-
-        timer =
-          setTimeout(
-            chord,
-            1400
-          );
-
-      }
-
-
-      playing = true;
-
-      chord();
-
-      musicBtn.innerHTML = "<small>❚❚</small>";
-
-    }
 
 
     /* =========================
@@ -944,34 +918,39 @@
 
     musicBtn.addEventListener(
       "click",
-      async function () {
+      async function() {
 
-        if (!playing) {
+        if (
+          backgroundMusic.paused
+        ) {
 
-          startAmbient();
+          await playMusic();
 
         } else {
 
-          playing = false;
-
-          if (timer) {
-            clearTimeout(timer);
-          }
-
-          if (audioCtx) {
-
-            try {
-              await audioCtx.close();
-            } catch (e) {
-              console.log(e);
-            }
-
-          }
+          backgroundMusic.pause();
 
           musicBtn.innerHTML =
             "<small>♫</small>";
 
         }
+
+      }
+    );
+
+
+    /* =========================
+       SI EL AUDIO TERMINA
+       VUELVE A EMPEZAR
+    ========================== */
+
+    backgroundMusic.addEventListener(
+      "ended",
+      function() {
+
+        backgroundMusic.currentTime = 0;
+
+        playMusic();
 
       }
     );
