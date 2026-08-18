@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#100a12" />
+  <meta name="theme-color" content="#09070b" />
 
   <title>Para ti | 25 de agosto</title>
 
@@ -49,12 +49,17 @@
       font: inherit;
     }
 
+    /* =========================================
+       FONDO
+    ========================================= */
+
     .screen {
       min-height: 100vh;
       min-height: 100svh;
 
-      display: grid;
-      place-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       position: relative;
       overflow: hidden;
@@ -66,7 +71,6 @@
       content: "";
 
       position: absolute;
-
       inset: -20%;
 
       background:
@@ -95,21 +99,19 @@
 
     .stars,
     .petals {
-
       position: absolute;
-
       inset: 0;
 
       pointer-events: none;
 
       z-index: -1;
-
     }
 
-    /* ESTRELLAS */
+    /* =========================================
+       ESTRELLAS
+    ========================================= */
 
     .star {
-
       position: absolute;
 
       width: 3px;
@@ -121,30 +123,210 @@
 
       opacity: 0.35;
 
-      box-shadow: 0 0 12px #e8b98f;
+      box-shadow:
+        0 0 12px #e8b98f;
 
       animation:
         twinkle 3.5s infinite ease-in-out;
-
     }
 
     @keyframes twinkle {
 
       50% {
-
         opacity: 0.9;
 
-        transform: scale(1.7);
-
+        transform:
+          scale(1.7);
       }
 
     }
 
-    /* INTRO */
+    /* =========================================
+       CONTENEDOR DE LA PANTALLA INICIAL
+    ========================================= */
+
+    .intro-container {
+
+      width: min(94%, 620px);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      padding: 25px 0 40px;
+
+      animation:
+        appear 0.9s ease both;
+    }
+
+    /* =========================================
+       CARRUSEL
+    ========================================= */
+
+    .carousel {
+
+      width: 100%;
+
+      position: relative;
+
+      margin-bottom: 20px;
+
+      overflow: hidden;
+
+      border-radius: 18px;
+
+      border:
+        1px solid
+        rgba(232, 185, 143, 0.30);
+
+      background:
+        rgba(20, 10, 22, 0.65);
+
+      box-shadow:
+
+        0 20px 60px
+        rgba(0, 0, 0, 0.55),
+
+        0 0 35px
+        rgba(141, 76, 168, 0.12);
+
+      backdrop-filter: blur(8px);
+
+      padding: 8px;
+    }
+
+    /*
+      Máscara suave en los laterales
+    */
+
+    .carousel::before,
+    .carousel::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      bottom: 0;
+
+      width: 70px;
+
+      z-index: 3;
+
+      pointer-events: none;
+    }
+
+    .carousel::before {
+
+      left: 0;
+
+      background:
+        linear-gradient(
+          to right,
+          rgba(9, 7, 11, 0.75),
+          transparent
+        );
+    }
+
+    .carousel::after {
+
+      right: 0;
+
+      background:
+        linear-gradient(
+          to left,
+          rgba(9, 7, 11, 0.75),
+          transparent
+        );
+    }
+
+    .carousel-track {
+
+      display: flex;
+
+      width: max-content;
+
+      gap: 12px;
+
+      animation:
+        carouselMove 28s
+        linear
+        infinite;
+    }
+
+    .carousel:hover .carousel-track {
+
+      animation-play-state: paused;
+    }
+
+    .carousel-photo {
+
+      width: 180px;
+      height: 235px;
+
+      flex-shrink: 0;
+
+      object-fit: cover;
+
+      border-radius: 13px;
+
+      display: block;
+
+      border:
+        1px solid
+        rgba(232, 185, 143, 0.18);
+
+      box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.45);
+
+      transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+    }
+
+    .carousel-photo:hover {
+
+      transform:
+        scale(1.025);
+
+      filter:
+        brightness(1.08);
+    }
+
+    /*
+      Movimiento infinito.
+
+      Se duplican las fotos en HTML para
+      que al terminar una secuencia
+      comience nuevamente sin salto visible.
+    */
+
+    @keyframes carouselMove {
+
+      from {
+        transform:
+          translateX(0);
+      }
+
+      to {
+        transform:
+          translateX(
+            calc(-50% - 6px)
+          );
+      }
+
+    }
+
+    /* =========================================
+       TARJETA PRINCIPAL
+    ========================================= */
 
     .intro {
 
-      width: min(92%, 520px);
+      width: 100%;
 
       text-align: center;
 
@@ -158,20 +340,20 @@
         linear-gradient(
           145deg,
           rgba(30, 16, 31, 0.84),
-          rgba(8, 7, 10, 0.9)
+          rgba(8, 7, 10, 0.90)
         );
 
       box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.55),
-        inset 0 0 70px rgba(141, 76, 168, 0.06);
 
-      border-radius: 4px;
+        0 25px 80px
+        rgba(0, 0, 0, 0.55),
+
+        inset 0 0 70px
+        rgba(141, 76, 168, 0.06);
+
+      border-radius: 5px;
 
       backdrop-filter: blur(10px);
-
-      animation:
-        appear 0.9s ease both;
-
     }
 
     .eyebrow {
@@ -183,7 +365,6 @@
       font-size: 0.78rem;
 
       color: var(--gold);
-
     }
 
     h1 {
@@ -203,14 +384,14 @@
 
       font-weight: 400;
 
-      margin: 20px 0 12px;
+      margin:
+        20px 0 12px;
 
       color: #f0c5a6;
 
       text-shadow:
         0 0 30px
         rgba(232, 185, 143, 0.13);
-
     }
 
     .intro p {
@@ -225,10 +406,11 @@
         0 auto 28px;
 
       max-width: 390px;
-
     }
 
-    /* INPUT */
+    /* =========================================
+       INPUT
+    ========================================= */
 
     .date-input {
 
@@ -254,16 +436,15 @@
 
       outline: none;
 
-      transition: 0.25s;
+      transition:
+        0.25s;
 
       font-size: 1.05rem;
-
     }
 
     .date-input::placeholder {
 
       color: #9e8997;
-
     }
 
     .date-input:focus {
@@ -274,10 +455,11 @@
       box-shadow:
         0 0 0 4px
         rgba(232, 185, 143, 0.08);
-
     }
 
-    /* BOTÓN */
+    /* =========================================
+       BOTÓN
+    ========================================= */
 
     .open-btn {
 
@@ -312,7 +494,6 @@
       transition:
         transform 0.2s,
         box-shadow 0.2s;
-
     }
 
     .open-btn:hover {
@@ -322,38 +503,39 @@
 
       box-shadow:
         0 14px 35px
-        rgba(141, 76, 168, 0.3);
-
+        rgba(141, 76, 168, 0.30);
     }
 
     .open-btn:active {
 
       transform:
         translateY(0);
-
     }
 
-    /* ERROR */
+    /* =========================================
+       ERROR
+    ========================================= */
 
     .error {
 
       min-height: 24px;
 
-      margin: 8px 0 0;
+      margin:
+        8px 0 0;
 
       color: #e8a4b4;
 
       font-size: 0.95rem;
-
     }
 
     .hidden {
 
       display: none !important;
-
     }
 
-    /* INVITACIÓN */
+    /* =========================================
+       INVITACIÓN
+    ========================================= */
 
     .invitation-wrap {
 
@@ -367,7 +549,6 @@
 
       animation:
         reveal 1.2s ease both;
-
     }
 
     .invitation-card {
@@ -381,12 +562,12 @@
       overflow: hidden;
 
       box-shadow:
+
         0 30px 100px
         rgba(0, 0, 0, 0.7),
 
         0 0 0 1px
         rgba(232, 185, 143, 0.18);
-
     }
 
     .invitation-card img {
@@ -396,10 +577,11 @@
       width: 100%;
 
       height: auto;
-
     }
 
-    /* MENSAJE FINAL */
+    /* =========================================
+       MENSAJE FINAL
+    ========================================= */
 
     .final-note {
 
@@ -418,23 +600,22 @@
       line-height: 1.45;
 
       opacity: 0.95;
-
     }
 
-    /* BOTÓN MÚSICA */
+    /* =========================================
+       BOTÓN MÚSICA
+    ========================================= */
 
     .music {
 
       position: fixed;
 
       right: 18px;
-
       bottom: 18px;
 
       z-index: 20;
 
       width: 46px;
-
       height: 46px;
 
       border-radius: 50%;
@@ -459,25 +640,25 @@
       transition:
         transform 0.2s,
         background 0.2s;
-
     }
 
     .music:hover {
 
-      transform: scale(1.08);
+      transform:
+        scale(1.08);
 
       background:
-        rgba(40, 18, 42, 0.9);
-
+        rgba(40, 18, 42, 0.90);
     }
 
     .music small {
 
       font-size: 15px;
-
     }
 
-    /* ANIMACIONES */
+    /* =========================================
+       ANIMACIONES
+    ========================================= */
 
     @keyframes appear {
 
@@ -487,17 +668,15 @@
 
         transform:
           translateY(18px);
-
       }
 
       to {
 
         opacity: 1;
 
-        transform: none;
-
+        transform:
+          none;
       }
-
     }
 
     @keyframes reveal {
@@ -509,20 +688,20 @@
         transform:
           translateY(28px)
           scale(0.985);
-
       }
 
       to {
 
         opacity: 1;
 
-        transform: none;
-
+        transform:
+          none;
       }
-
     }
 
-    /* PÉTALOS */
+    /* =========================================
+       PÉTALOS
+    ========================================= */
 
     .petal {
 
@@ -531,7 +710,6 @@
       top: -30px;
 
       width: 11px;
-
       height: 17px;
 
       border-radius:
@@ -548,7 +726,6 @@
 
       animation:
         fall linear infinite;
-
     }
 
     @keyframes fall {
@@ -564,20 +741,73 @@
           rotate(560deg);
 
         opacity: 0;
-
       }
-
     }
 
-    /* MÓVIL */
+    /* =========================================
+       CELULAR
+    ========================================= */
 
     @media (max-width: 600px) {
+
+      .intro-container {
+
+        width: 94%;
+
+        padding-top: 18px;
+      }
+
+      .carousel {
+
+        margin-bottom: 15px;
+
+        border-radius: 15px;
+
+        padding: 6px;
+      }
+
+      .carousel-track {
+
+        gap: 9px;
+
+        animation-duration: 24s;
+      }
+
+      .carousel-photo {
+
+        width: 125px;
+
+        height: 165px;
+
+        border-radius: 10px;
+      }
+
+      .carousel::before,
+      .carousel::after {
+
+        width: 35px;
+      }
 
       .intro {
 
         padding:
           36px 20px;
+      }
 
+      .intro p {
+
+        font-size: 1.08rem;
+      }
+
+      .date-input {
+
+        font-size: 1rem;
+      }
+
+      .open-btn {
+
+        padding:
+          13px 24px;
       }
 
       .invitation-wrap {
@@ -585,19 +815,56 @@
         width: 96vw;
 
         padding-top: 12px;
-
       }
 
       .final-note {
 
         font-size: 1rem;
-
       }
 
-      .date-input {
+    }
 
-        font-size: 1rem;
+    /* =========================================
+       CELULARES MUY PEQUEÑOS
+    ========================================= */
 
+    @media (max-width: 380px) {
+
+      .carousel-photo {
+
+        width: 110px;
+
+        height: 150px;
+      }
+
+      .intro {
+
+        padding:
+          32px 17px;
+      }
+
+      .eyebrow {
+
+        font-size: 0.70rem;
+      }
+
+    }
+
+    /* =========================================
+       REDUCIR ANIMACIONES SI EL USUARIO LO PIDE
+    ========================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .carousel-track {
+
+        animation: none;
+      }
+
+      .star,
+      .petal {
+
+        animation: none;
       }
 
     }
@@ -605,13 +872,11 @@
   </style>
 </head>
 
-
 <body>
 
-
-  <!-- ==================================
+  <!-- =========================================
        PANTALLA INICIAL
-  =================================== -->
+  ========================================= -->
 
   <section
     id="introScreen"
@@ -629,76 +894,160 @@
     ></div>
 
 
-    <div class="intro">
+    <div class="intro-container">
 
-      <div class="eyebrow">
+      <!-- =====================================
+           CARRUSEL DE FOTOS
+      ====================================== -->
 
-        Una pequeña sorpresa
+      <div class="carousel">
+
+        <div class="carousel-track">
+
+          <!-- PRIMERA SERIE -->
+
+          <img
+            src="assets/foto1.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto2.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto3.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto4.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto5.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+
+          <!-- SEGUNDA SERIE
+               DUPLICADA PARA HACER
+               EL MOVIMIENTO INFINITO
+          -->
+
+          <img
+            src="assets/foto1.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto2.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto3.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto4.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+          <img
+            src="assets/foto5.jpg"
+            class="carousel-photo"
+            alt="Foto"
+          >
+
+        </div>
 
       </div>
 
 
-      <h1>
+      <!-- =====================================
+           TARJETA PARA INTRODUCIR FECHA
+      ====================================== -->
 
-        Para ti
+      <div class="intro">
 
-      </h1>
+        <div class="eyebrow">
+          Una pequeña sorpresa
+        </div>
 
 
-      <p>
+        <h1>
+          Para ti
+        </h1>
 
-        Hay algo que preparé
-        con mucho cariño.
+
+        <p>
+
+          Hay algo que preparé
+          con mucho cariño.
+
+          <br>
+
+          Escribe la fecha de tu día
+          para descubrirlo.
+
+        </p>
+
+
+        <input
+          id="dateInput"
+          class="date-input"
+          type="text"
+          autocomplete="off"
+          inputmode="numeric"
+          placeholder="DD/MM"
+          aria-label="Fecha"
+          maxlength="5"
+        >
+
 
         <br>
 
-        Escribe la fecha de tu día
-        para descubrirlo.
 
-      </p>
+        <button
+          id="openBtn"
+          class="open-btn"
+          type="button"
+        >
 
+          Abrir mi invitación
 
-      <input
-        id="dateInput"
-        class="date-input"
-        type="text"
-        autocomplete="off"
-        inputmode="numeric"
-        placeholder="DD/MM"
-        aria-label="Fecha"
-        maxlength="5"
-      >
+        </button>
 
 
-      <br>
+        <div
+          id="error"
+          class="error"
+          aria-live="polite"
+        ></div>
 
-
-      <button
-        id="openBtn"
-        class="open-btn"
-        type="button"
-      >
-
-        Abrir mi invitación
-
-      </button>
-
-
-      <div
-        id="error"
-        class="error"
-        aria-live="polite"
-      ></div>
+      </div>
 
     </div>
 
   </section>
 
 
-
-  <!-- ==================================
+  <!-- =========================================
        INVITACIÓN
-  =================================== -->
+  ========================================= -->
 
   <main
     id="invitationScreen"
@@ -718,14 +1067,15 @@
 
     <div class="invitation-wrap">
 
-
       <div class="invitation-card">
 
         <img
           src="assets/invitacion.png"
           alt="Invitación de cumpleaños para el 25 de agosto en SIMAH"
+
           onerror="
             this.style.display='none';
+
             document
               .getElementById('imageError')
               .classList
@@ -737,6 +1087,7 @@
         <div
           id="imageError"
           class="hidden"
+
           style="
             padding:40px 20px;
             text-align:center;
@@ -770,16 +1121,14 @@
 
       </div>
 
-
     </div>
 
   </main>
 
 
-
-  <!-- ==================================
+  <!-- =========================================
        BOTÓN DE MÚSICA
-  =================================== -->
+  ========================================= -->
 
   <button
     id="musicBtn"
@@ -793,14 +1142,12 @@
   </button>
 
 
-
-  <!-- ==================================
+  <!-- =========================================
        TU MP3
-       
-       DEBE ESTAR EN:
 
+       ARCHIVO:
        assets/musica.mp3
-  =================================== -->
+  ========================================= -->
 
   <audio
     id="backgroundMusic"
@@ -816,13 +1163,11 @@
   </audio>
 
 
-
   <script>
 
-
-    /* ==================================
+    /* =========================================
        ELEMENTOS
-    =================================== */
+    ========================================= */
 
     const intro =
       document.getElementById(
@@ -860,10 +1205,9 @@
       );
 
 
-
-    /* ==================================
-       NORMALIZAR
-    =================================== */
+    /* =========================================
+       NORMALIZAR TEXTO
+    ========================================= */
 
     function normalize(value) {
 
@@ -888,10 +1232,9 @@
     }
 
 
-
-    /* ==================================
+    /* =========================================
        FECHA VÁLIDA
-    =================================== */
+    ========================================= */
 
     function validDate(value) {
 
@@ -899,7 +1242,6 @@
         normalize(value);
 
       return [
-
         "25/08",
         "25-08",
         "2508",
@@ -911,10 +1253,9 @@
     }
 
 
-
-    /* ==================================
+    /* =========================================
        ESTRELLAS
-    =================================== */
+    ========================================= */
 
     function makeStars(
       container,
@@ -956,10 +1297,9 @@
     }
 
 
-
-    /* ==================================
+    /* =========================================
        PÉTALOS
-    =================================== */
+    ========================================= */
 
     function makePetals(
       container,
@@ -1014,10 +1354,9 @@
     }
 
 
-
-    /* ==================================
-       EFECTOS
-    =================================== */
+    /* =========================================
+       CREAR EFECTOS
+    ========================================= */
 
     makeStars(
       document.getElementById(
@@ -1044,23 +1383,20 @@
     );
 
 
-
-    /* ==================================
+    /* =========================================
        ABRIR INVITACIÓN
-       
-       AQUÍ SE REPRODUCE
-       TU MP3.
-    =================================== */
+    ========================================= */
 
     async function openInvitation() {
 
-
-      /* ------------------------------
+      /* ---------------------------------------
          COMPROBAR FECHA
-      ------------------------------ */
+      --------------------------------------- */
 
       if (
-        !validDate(input.value)
+        !validDate(
+          input.value
+        )
       ) {
 
         error.textContent =
@@ -1073,12 +1409,13 @@
       }
 
 
-      error.textContent = "";
+      error.textContent =
+        "";
 
 
-      /* ------------------------------
+      /* ---------------------------------------
          MOSTRAR INVITACIÓN
-      ------------------------------ */
+      --------------------------------------- */
 
       intro.classList.add(
         "hidden"
@@ -1093,25 +1430,21 @@
       );
 
 
-      /* ------------------------------
-         REINICIAR MP3
-         
-         Esto garantiza que empiece
-         desde el principio.
-      ------------------------------ */
+      /* ---------------------------------------
+         REINICIAR MÚSICA
+      --------------------------------------- */
 
       music.pause();
 
       music.currentTime = 0;
 
 
-      /* ------------------------------
-         REPRODUCIR MP3
-         
-         El clic del botón "Abrir"
-         permite que el navegador
-         autorice el audio.
-      ------------------------------ */
+      /* ---------------------------------------
+         REPRODUCIR TU MP3
+
+         El clic del botón permite que
+         el navegador autorice el audio.
+      --------------------------------------- */
 
       try {
 
@@ -1135,9 +1468,9 @@
       }
 
 
-      /* ------------------------------
-         IR ARRIBA
-      ------------------------------ */
+      /* ---------------------------------------
+         IR AL PRINCIPIO
+      --------------------------------------- */
 
       window.scrollTo({
 
@@ -1150,10 +1483,9 @@
     }
 
 
-
-    /* ==================================
+    /* =========================================
        BOTÓN ABRIR
-    =================================== */
+    ========================================= */
 
     btn.addEventListener(
       "click",
@@ -1161,10 +1493,9 @@
     );
 
 
-
-    /* ==================================
+    /* =========================================
        ENTER
-    =================================== */
+    ========================================= */
 
     input.addEventListener(
       "keydown",
@@ -1184,10 +1515,17 @@
     );
 
 
+    /* =========================================
+       FORMATEAR AUTOMÁTICAMENTE
 
-    /* ==================================
-       FORMATEAR 2508 → 25/08
-    =================================== */
+       Si escribe:
+
+       2508
+
+       se convierte en:
+
+       25/08
+    ========================================= */
 
     input.addEventListener(
       "input",
@@ -1241,20 +1579,17 @@
     );
 
 
-
-    /* ==================================
+    /* =========================================
        BOTÓN DE MÚSICA
-    =================================== */
+    ========================================= */
 
     musicBtn.addEventListener(
       "click",
       async function() {
 
-
         if (
           music.paused
         ) {
-
 
           try {
 
@@ -1274,11 +1609,9 @@
 
           }
 
-
         }
 
         else {
-
 
           music.pause();
 
@@ -1291,18 +1624,16 @@
     );
 
 
+    /* =========================================
+       ASEGURAR QUE AL CARGAR:
 
-    /* ==================================
-       SEGURIDAD
-       
-       AL CARGAR LA PÁGINA,
-       EL MP3 ESTÁ DETENIDO.
-    =================================== */
+       - NO SUENE LA MÚSICA
+       - LA INVITACIÓN ESTÉ OCULTA
+    ========================================= */
 
     music.pause();
 
     music.currentTime = 0;
-
 
   </script>
 
